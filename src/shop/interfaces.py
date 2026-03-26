@@ -1,0 +1,16 @@
+from typing import Protocol
+from src.shop.models import User
+
+
+class InventoryService(Protocol):
+    def in_stock(self, item_id: str, quantity: int) -> bool: ...
+
+    def deduct_item(self, item_id: str, quantity: int) -> None: ...
+
+    def return_item(self, item_id: str, quantity: int) -> None: ...
+
+
+class PaymentGateway(Protocol):
+    def charge(self, user: User, amount: float) -> bool: ...
+
+    def refund(self, user: User, amount: float) -> None: ...
